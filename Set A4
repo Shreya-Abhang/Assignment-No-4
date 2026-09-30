@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List</title>
+    <script src="/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="newTodo" placeholder="Add new Todo" />
+        <button @click="addTodo">Add</button>
+        <ul>
+            <li v-for="(todo, index) in todos" :key="index">
+                {{ todo }}
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+        createApp({
+            data() {
+                return {
+                    newTodo: "",
+                    todos: []
+                };
+            },
+            methods: {
+                addTodo() {
+                    if (this.newTodo.trim() !== "") {
+                        this.todos.push(this.newTodo);
+                        this.newTodo = "";
+                    }
+                }
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>
