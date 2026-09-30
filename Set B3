@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Form</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <login-form @submit-form="showData"></login-form>
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+        const app = createApp({
+            methods: {
+                showData(data) {
+                    alert(data.email);
+                }
+            }
+        });
+
+        app.component("login-form", {
+            data() {
+                return {
+                    email: "",
+                    password: ""
+                };
+            },
+            methods: {
+                submitForm() {
+                    if (this.email === "" || this.password === "") {
+                        alert("Enter All Fields");
+                    } else {
+                        this.$emit("submit-form", {
+                            email: this.email,
+                            password: this.password
+                        });
+                    }
+                }
+            },
+            template: `
+                <div>
+                    <input v-model="email" placeholder="Email" /><br>
+                    <input type="password" v-model="password" placeholder="Password" /><br><br>
+                    <button @click="submitForm">Submit</button>
+                </div>
+            `
+        });
+
+        app.mount("#app");
+    </script>
+</body>
+</html>
