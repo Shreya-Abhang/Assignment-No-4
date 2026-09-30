@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Card</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <user-card name="Rahul"></user-card>
+        <user-card name="Amit"></user-card>
+        <user-card name="Priya"></user-card>
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+        const app = createApp({});
+
+        app.component("user-card", {
+            props: ["name"],
+            template: `
+                <div>
+                    <h3>{{ name }}</h3>
+                </div>
+            `
+        });
+
+        app.mount("#app");
+    </script>
+</body>
+</html>
