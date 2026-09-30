@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Item</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <add-item @add-item="addItem"></add-item>
+        <ol>
+            <li v-for="item in items">{{ item }}</li>
+        </ol>
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+        const app = createApp({
+            data() {
+                return {
+                    items: []
+                };
+            },
+            methods: {
+                addItem(item) {
+                    this.items.push(item);
+                }
+            }
+        });
+
+        app.component("add-item", {
+            template: `
+                <button @click="$emit('add-item', 'Apple')">Add Item</button>
+            `
+        });
+
+        app.mount("#app");
+    </script>
+</body>
+</html>
