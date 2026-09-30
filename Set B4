@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Watch</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input v-model="searchTerm" placeholder="Search" />
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+        createApp({
+            data() {
+                return {
+                    searchTerm: "",
+                    timer: null
+                };
+            },
+            watch: {
+                searchTerm(newValue) {
+                    clearTimeout(this.timer);
+                    this.timer = setTimeout(() => {
+                        console.log(newValue);
+                    }, 300);
+                }
+            }
+        }).mount("#app");
+    </script>
+</body>
+</html>
