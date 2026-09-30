@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/vue-router@4"></script>
+</head>
+<body>
+    <div id="app">
+        <router-link to="/product/101">Product 101</router-link>
+        <router-view></router-view>
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+        const products = [
+            { id: 101, name: "Laptop" },
+            { id: 102, name: "Mobile" }
+        ];
+
+        const Product = {
+            data() {
+                return {
+                    product: {}
+                };
+            },
+            mounted() {
+                let id = this.$route.params.id;
+                this.product = products.find(p => p.id == id);
+            },
+            template: `
+                <div>
+                    <h2>Product ID: {{ $route.params.id }}</h2>
+                    <p>Name: {{ product ? product.name : '' }}</p>
+                </div>
+            `
+        };
+
+        const router = VueRouter.createRouter({
+            history: VueRouter.createWebHashHistory(),
+            routes: [
+                { path: "/product/:id", component: Product }
+            ]
+        });
+
+        createApp({})
+            .use(router)
+            .mount("#app");
+    </script>
+</body>
+</html>
