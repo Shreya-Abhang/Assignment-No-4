@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Router</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/vue-router@4"></script>
+</head>
+<body>
+    <div id="app">
+        <router-link to="/home">Home</router-link> | 
+        <router-link to="/about">About</router-link>
+        <router-view></router-view>
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+        const Home = { template: '<h2>Home Page</h2>' };
+        const About = { template: '<h2>About Page</h2>' };
+
+        const router = VueRouter.createRouter({
+            history: VueRouter.createWebHashHistory(),
+            routes: [
+                { path: "/home", component: Home },
+                { path: "/about", component: About }
+            ]
+        });
+
+        createApp({})
+            .use(router)
+            .mount("#app");
+    </script>
+</body>
+</html>
