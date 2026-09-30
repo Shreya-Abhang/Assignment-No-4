@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vue Image</title>
+    <style>
+        .image {
+            width: 400px;
+            height: 250px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <img v-if="imageUrl" :src="imageUrl" class="image" />
+        <p v-else>No image Available</p>
+        <input v-model="imageUrl" placeholder="Enter Image url" />
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    imageUrl: ""
+                };
+            }
+        });
+        app.mount("#app");
+    </script>
+</body>
+</html>
