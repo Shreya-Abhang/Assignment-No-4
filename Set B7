@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Composition API</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2>Count: {{ count }}</h2>
+        <p>Name: {{ profile.name }}</p>
+        <p>Age: {{ profile.age }}</p>
+        <button @click="increase">Increase Count</button>
+        <button @click="changeProfile">Change Profile</button>
+    </div>
+
+    <script>
+        const { createApp, ref, reactive } = Vue;
+
+        createApp({
+            setup() {
+                const count = ref(0);
+                const profile = reactive({
+                    name: "Rahul",
+                    age: 20
+                });
+
+                function increase() {
+                    count.value++;
+                }
+
+                function changeProfile() {
+                    profile.name = "Amit";
+                    profile.age = 21;
+                }
+
+                return {
+                    count,
+                    profile,
+                    increase,
+                    changeProfile
+                };
+            }
+        }).mount("#app");
+    </script>
+</body>
+</html>
