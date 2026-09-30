@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Navigation</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/vue-router@4"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="goProduct">Go to product 101</button>
+        <router-view></router-view>
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+        const Product = { template: "<h2>Product 101</h2>" };
+
+        const router = VueRouter.createRouter({
+            history: VueRouter.createWebHashHistory(),
+            routes: [
+                { path: "/product/101", component: Product }
+            ]
+        });
+
+        createApp({
+            methods: {
+                goProduct() {
+                    this.$router.push("/product/101");
+                }
+            }
+        })
+        .use(router)
+        .mount("#app");
+    </script>
+</body>
+</html>
+
