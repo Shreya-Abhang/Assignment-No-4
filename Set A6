@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Class Dynamically</title>
+    <script src="/vue.global.js"></script>
+    <style>
+        .card {
+            padding: 20px;
+            margin: 20px;
+            width: 200px;
+            text-align: center;
+        }
+        .green {
+            background-color: green;
+            color: white;
+        }
+        .red {
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="card" :class="score >= 50 ? 'green' : 'red'">
+            Score: {{ score }}
+        </div>
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+        createApp({
+            data() {
+                return {
+                    score: 60
+                };
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>
